@@ -54,12 +54,13 @@ router.post('/cerebros/new', function(req, res) {
   var data = req.body;
 
   var nuevoZombie = new Cerebro({
-    Name: data.name,
-    Mail: data.email,
-    Type: data.type
+    Description: data.description,
+    Flavor: data.flavor,
+    Price: data.price,
+    Picture: data.picture
   });
 
-  if(data.name && data.email && data.type){
+  if(data.description && data.flavor && data.picture && data.price){
     nuevoZombie.save().then(function() {
       res.render('add/cerebro', { Alerta: "alert alert-success", Mensaje: 'Se agrego un cerebro', Hide: ''});
     });
