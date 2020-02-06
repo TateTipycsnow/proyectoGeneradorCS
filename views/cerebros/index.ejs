@@ -1,0 +1,32 @@
+<% include ../_header %>
+    <h1>
+      <%= title %>
+    </h1>
+    <p>
+      <%= data %>
+    </p>
+
+    <table class="table table-striped">
+      <tr>
+        <th>Description</th>
+        <th>Flavor</th>
+        <th>Price</th>
+        <th>Picture</th>
+      </tr>
+      <%
+      if(viewCerebros){
+        viewCerebros.forEach(function(cerebro){
+          %>
+          <tr>
+            <td> <%= cerebro.Description %> </td>
+            <td> <%= cerebro.Flavor %> </td>
+            <td> <%= cerebro.Price %>$ </td>
+            <td>
+                <img src= <%= cerebro.Picture %> alt="" style="width: 36px; height: 36px; margin-right: 10px;">
+            </td>
+          </tr>
+          <%
+        });
+      }%>
+    </table>
+<% include ../_footer %>

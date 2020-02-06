@@ -1,0 +1,31 @@
+<% include _header %>
+    <h1>
+      <%= title %>
+    </h1>
+    <p>
+      Welcome to <%= title %>
+    </p>
+    <p>
+      <%= curso %>
+    </p>
+
+    <table class="table table-striped">
+      <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Tipo</th>
+      </tr>
+      <%
+      if(viewZombies){
+        viewZombies.forEach(function(zombie){
+          %>
+          <tr>
+            <td> <%= zombie.Name %> </td>
+            <td> <%= zombie.Mail %> </td>
+            <td> <%= zombie.Type %> </td>
+          </tr>
+          <%
+        });
+      }%>
+    </table>
+<% include _footer %>
