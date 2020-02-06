@@ -23,6 +23,7 @@ router.get('/cerebros', function(req, res) {
   });
 });
 
+/*AQUI ES LA PARTE PARA AGREGAR ZOMBIES*/
 router.get('/zombies/add', function(req, res) {
   res.render('add/zombie', { Hide: 'hidden', Alerta: '', Mensaje: ''});
 });
@@ -43,9 +44,10 @@ router.post('/zombies/new', function(req, res) {
   }
   else{
       res.render('add/zombie', { Alerta: "alert alert-danger", Mensaje: 'No se agrego un zombie', Hide: ''});
-  }
-});
-
+    }
+  });
+  
+  /*AQUI ES LA PARTE PARA AGREGAR CEREBROS*/
 router.get('/cerebros/add', function(req, res) {
   res.render('add/cerebro', { Hide: 'hidden', Alerta: '', Mensaje: ''});
 });
