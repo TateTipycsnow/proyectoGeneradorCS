@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
   Zombie.find().exec(function(error, zombies){
     if(!error){
       console.log(zombies);
-      res.render('index', { title: 'Jared', curso: 'Programacion C/S', viewZombies: zombies});
+      res.render('zombies/index', { title: 'Jared', curso: 'Programacion C/S', viewZombies: zombies});
     }
     else{
       console.log(error.message);
@@ -31,7 +31,7 @@ router.get('/cerebros', function(req, res) {
 
 /*AQUI ES LA PARTE PARA AGREGAR ZOMBIES*/
 router.get('/zombies/add', function(req, res) {
-  res.render('add/zombie', { Hide: 'hidden', Alerta: '', Mensaje: ''});
+  res.render('zombies/add', { Hide: 'hidden', Alerta: '', Mensaje: ''});
 });
 
 router.post('/zombies/new', function(req, res) {
@@ -42,40 +42,57 @@ router.post('/zombies/new', function(req, res) {
     Mail: data.email,
     Type: data.type
   });
+  
+  nuevoZombie.save(function(error) {
+    let Campos = ["Name", "Mail", "Type"];
 
-  if(data.name && data.email && data.type){
-    nuevoZombie.save().then(function() {
-      res.render('add/zombie', { Alerta: "alert alert-success", Mensaje: 'Se agrego un zombie', Hide: ''});
-    });
-  }
-  else{
-      res.render('add/zombie', { Alerta: "alert alert-danger", Mensaje: 'No se agrego un zombie', Hide: ''});
+    if(error) {
+      for(var i=0; i < Campos.length; i++) {
+        var Campo = Campos[i];
+        if(error.errors[Campo]) {
+          mensajeResultante = error.errors[Campo].message;
+          res.render('zombies/add', { Alerta: "alert alert-danger", Mensaje: mensajeResultante, Hide: ''});
+        }
+      }
+    }
+    else {
+      res.render('zombies/add', { Alerta: "alert alert-succes", Mensaje: "Zombie agregado", Hide: ''});
     }
   });
+});
   
   /*AQUI ES LA PARTE PARA AGREGAR CEREBROS*/
 router.get('/cerebros/add', function(req, res) {
-  res.render('add/cerebro', { Hide: 'hidden', Alerta: '', Mensaje: ''});
+  res.render('cerebros/add', { Hide: 'hidden', Alerta: '', Mensaje: ''});
 });
 
 router.post('/cerebros/new', function(req, res) {
   var data = req.body;
 
-  var nuevoZombie = new Cerebro({
+  var nuevoCerebro = new Cerebro({
     Description: data.description,
     Flavor: data.flavor,
     Price: data.price,
     Picture: data.picture
   });
 
-  if(data.description && data.flavor && data.picture && data.price){
-    nuevoZombie.save().then(function() {
-      res.render('add/cerebro', { Alerta: "alert alert-success", Mensaje: 'Se agrego un cerebro', Hide: ''});
-    });
-  }
-  else{
-      res.render('add/cerebro', { Alerta: "alert alert-danger", Mensaje: 'No se agrego un cerebro', Hide: ''});
-  }
+  nuevoCerebro.save(function(error) {
+    let Campos = ["Description", "Flavor", "Price", "Picture"];
+
+    if(error) {
+      for(var i=0; i < Campos.length; i++) {
+        var Campo = Campos[i];
+        if(error.errors[Campo]) {
+          mensajeResultante = error.errors[Campo].message;
+          res.render('cerebros/add', { Alerta: "alert alert-danger", Mensaje: mensajeResultante, Hide: ''});
+        }
+      }
+    }
+    else {
+      res.render('cerebros/add', { Alerta: "alert alert-succes", Mensaje: "Cerebro agregado", Hide: ''});
+    }
+  });
+  
 });
 
 module.exports = router;
