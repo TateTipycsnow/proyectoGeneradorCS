@@ -115,7 +115,8 @@ router.put('/zombies/edit/:id', async function(req,res) {
     console.log(error.message);
     res.render('zombies/edit', {Zombie: Zombie});
   }
-})
+});
+
 /*AQUI ES LA PARTE PARA EDITAR CEREBROS*/
 router.get('/cerebros/edit/:id', async function(req,res) {
   var Cerebro = await Cerebro.findById(req.params.id);
@@ -137,8 +138,40 @@ router.put('/cerebros/edit/:id', async function(req, res) {
     console.log(error.message);
     res.render('cerebros/edit', {Cerebro: Cerebro});
   }
-})
+});
 
 /*AQUI ES LA PARTE PARA ELIMINAR ZOMBIES*/
+router.get('/zombies/delete/:id', async function(req, res) {
+  var Zombie = await Zombie.findById(req.params.id);
+  res.render('zombies/delete', {Zombie: Zombie});
+});
+
+router.delete('/zombies/delete/:id', async function(req, res) {
+  var Zombie = await Zombie.findById(req.params.id);
+
+  try {
+    Zombie.remove();
+    res.redirect('/');
+  } catch (error) {
+    res.render('zombies/delete', {Zombie: Zombie});
+  }
+});
+
+/*AQUI ES LA PARTE PARA ELIMINAR CEREBROS*/
+router.get('/cerebros/delete/:id', async function(req, res) {
+  var Cerebro = await Cerebro.findById(req.params.id);
+  res.render('cerebros/delete', {Cerebro: Cerebro});
+});
+
+router.delete('/cerebros/delete/:id', async function(req, res) {
+  var Cerebro = await Cerebro.findById(req.params.id);
+
+  try {
+    Cerebro.remove();
+    res.redirect('/cerebros');
+  } catch (error) {
+    res.render('cerebros/delete', {Zombie: Zombie});
+  }
+});
 
 module.exports = router;
