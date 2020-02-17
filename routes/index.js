@@ -56,7 +56,7 @@ router.post('/zombies/new', function(req, res) {
       }
     }
     else {
-      res.render('zombies/add', { Alerta: "alert alert-succes", Mensaje: "Zombie agregado", Hide: ''});
+      res.render('zombies/add', { Alerta: "alert alert-success", Mensaje: "Zombie agregado", Hide: ''});
     }
   });
 });
@@ -89,10 +89,11 @@ router.post('/cerebros/new', function(req, res) {
       }
     }
     else {
-      res.render('cerebros/add', { Alerta: "alert alert-succes", Mensaje: "Cerebro agregado", Hide: ''});
+      res.render('cerebros/add', { Alerta: "alert alert-success", Mensaje: "Cerebro agregado", Hide: ''});
     }
   });
-  
 });
+
+/*AQUI ES LA PARTE PARA AGREGAR CEREBROS*/
 
 module.exports = router;
