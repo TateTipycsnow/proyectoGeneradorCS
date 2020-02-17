@@ -94,6 +94,51 @@ router.post('/cerebros/new', function(req, res) {
   });
 });
 
-/*AQUI ES LA PARTE PARA AGREGAR CEREBROS*/
+/*AQUI ES LA PARTE PARA EDITAR ZOMBIES*/
+router.get('/zombies/edit/:id', async function(req,res) {
+  var Zombie = await Zombie.findById(req.params.id);
+  res.render('zombies/edit', {Zombie: Zombie});
+});
+
+router.put('/zombies/edit/:id', async function(req,res) {
+  var Zombie = await Zombie.findById(req.params.id);
+
+  try {
+    Zombie.Name = req.body.Name;
+    Zombie.Mail = req.body.Mail;
+    Zombie.Type = req.body.Type;
+    console.log(Zombie);
+
+    await Zombie.save();
+    res.redirect('/');
+  } catch (error) {
+    console.log(error.message);
+    res.render('zombies/edit', {Zombie: Zombie});
+  }
+})
+/*AQUI ES LA PARTE PARA EDITAR CEREBROS*/
+router.get('/cerebros/edit/:id', async function(req,res) {
+  var Cerebro = await Cerebro.findById(req.params.id);
+  res.render('cerebros/edit', {Cerebro: Cerebro});
+});
+
+router.put('/cerebros/edit/:id', async function(req, res) {
+  var Cerebro = await Cerebro.findById(req.params.id);
+  try {
+    Cerebro.Description = req.body.Description;
+    Cerebro.Flavor = req.body.Flavor;
+    Cerebro.Price = req.body.Price;
+    Cerebro.Picture = req.body.Picture;
+    console.log(Cerebro);
+
+    await Cerebro.save();
+    res.redirect('/cerebros')
+  } catch (error) {
+    console.log(error.message);
+    res.render('cerebros/edit', {Cerebro: Cerebro});
+  }
+})
+
+/*AQUI ES LA PARTE PARA ELIMINAR ZOMBIES*/
 
 module.exports = router;

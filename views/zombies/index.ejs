@@ -14,6 +14,7 @@
         <th>Nombre</th>
         <th>Email</th>
         <th>Tipo</th>
+        <th>Acciones</th>
       </tr>
       <%
       if(viewZombies){
@@ -23,9 +24,18 @@
             <td> <%= zombie.Name %> </td>
             <td> <%= zombie.Mail %> </td>
             <td> <%= zombie.Type %> </td>
+            <td>
+              <a href="/zombies/edit/<%= zombie.id %>">
+                <i class="fas fa-edit" title="Actualizar"></i>
+              </a>
+              <a href="/zombies/delete/<%= zombie.id %>">
+                <i class="fas fa-trash danger" title="Eliminar"></i>
+              </a>
+            </td>
           </tr>
           <%
         });
       }%>
     </table>
+    <a href="/zombies/add"><button class="btn btn-dark"><i class="fas fa-plus" style="margin: 5px;"></i>Agregar nuevo zombie</button></a>
 <% include ../_footer %>

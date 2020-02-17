@@ -12,6 +12,7 @@
         <th>Flavor</th>
         <th>Price</th>
         <th>Picture</th>
+        <th>Acciones</th>
       </tr>
       <%
       if(viewCerebros){
@@ -22,11 +23,21 @@
             <td> <%= cerebro.Flavor %> </td>
             <td> <%= cerebro.Price %>$ </td>
             <td>
-                <img src= <%= cerebro.Picture %> alt="" style="width: 36px; height: 36px; margin-right: 10px;">
+              <img src="" alt="">
+                <img src="images/<%= cerebro.Picture %>" alt="" style="width: 36px; height: 36px; margin-right: 10px;">
+            </td>
+            <td>
+              <a href="/cerebros/editC/<%= cerebro.id %>">
+                <i title="Actualizar" class="fas fa-edit"></i>
+            </a>
+            <a href="/cerebros/deleteC/<%= cerebro.id%>">
+                <i title="Eliminar" class="fas fa-trash danger"></i>
+            </a>
             </td>
           </tr>
           <%
         });
       }%>
     </table>
+    <a href="/cerebros/add"><button class="btn btn-dark"><i class="fas fa-plus" style="margin: 5px;"></i>Agregar nuevo cerebro</button></a>
 <% include ../_footer %>
