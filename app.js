@@ -11,8 +11,8 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-//Conexion a base de datos
-mongoose.connect('mongodb://localhost:27017/zombie_school');
+//conexion a base de datos
+mongoose.connect("mongodb://localhost:27017/zombie_school");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

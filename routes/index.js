@@ -96,81 +96,81 @@ router.post('/cerebros/new', function(req, res) {
 
 /*AQUI ES LA PARTE PARA EDITAR ZOMBIES*/
 router.get('/zombies/edit/:id', async function(req,res) {
-  var Zombie = await Zombie.findById(req.params.id);
-  res.render('zombies/edit', {Zombie: Zombie});
+  let ZombieE = await Zombie.findById(req.params.id);
+  res.render('zombies/edit', {Zombie: ZombieE});
 });
 
 router.put('/zombies/edit/:id', async function(req,res) {
-  var Zombie = await Zombie.findById(req.params.id);
+  let ZombieE = await Zombie.findById(req.params.id);
 
   try {
-    Zombie.Name = req.body.Name;
-    Zombie.Mail = req.body.Mail;
-    Zombie.Type = req.body.Type;
-    console.log(Zombie);
+    ZombieE.Name = req.body.Name;
+    ZombieE.Mail = req.body.Mail;
+    ZombieE.Type = req.body.Type;
+    console.log(ZombieE);
 
-    await Zombie.save();
+    await ZombieE.save();
     res.redirect('/');
   } catch (error) {
     console.log(error.message);
-    res.render('zombies/edit', {Zombie: Zombie});
+    res.render('zombies/edit', {Zombie: ZombieE});
   }
 });
 
 /*AQUI ES LA PARTE PARA EDITAR CEREBROS*/
 router.get('/cerebros/edit/:id', async function(req,res) {
-  var Cerebro = await Cerebro.findById(req.params.id);
-  res.render('cerebros/edit', {Cerebro: Cerebro});
+  let CerebroE = await Cerebro.findById(req.params.id);
+  res.render('cerebros/edit', {Cerebro: CerebroE});
 });
 
 router.put('/cerebros/edit/:id', async function(req, res) {
-  var Cerebro = await Cerebro.findById(req.params.id);
+  let CerebroE = await Cerebro.findById(req.params.id);
   try {
-    Cerebro.Description = req.body.Description;
-    Cerebro.Flavor = req.body.Flavor;
-    Cerebro.Price = req.body.Price;
-    Cerebro.Picture = req.body.Picture;
-    console.log(Cerebro);
+    CerebroE.Description = req.body.Description;
+    CerebroE.Flavor = req.body.Flavor;
+    CerebroE.Price = req.body.Price;
+    CerebroE.Picture = req.body.Picture;
+    console.log(CerebroE);
 
-    await Cerebro.save();
+    await CerebroE.save();
     res.redirect('/cerebros')
   } catch (error) {
     console.log(error.message);
-    res.render('cerebros/edit', {Cerebro: Cerebro});
+    res.render('cerebros/edit', {Cerebro: CerebroE});
   }
 });
 
 /*AQUI ES LA PARTE PARA ELIMINAR ZOMBIES*/
 router.get('/zombies/delete/:id', async function(req, res) {
-  var Zombie = await Zombie.findById(req.params.id);
-  res.render('zombies/delete', {Zombie: Zombie});
+  var ZombieD = await Zombie.findById(req.params.id);
+  res.render('zombies/delete', {Zombie: ZombieD});
 });
 
 router.delete('/zombies/delete/:id', async function(req, res) {
-  var Zombie = await Zombie.findById(req.params.id);
+  var ZombieD = await Zombie.findById(req.params.id);
 
   try {
-    Zombie.remove();
+    ZombieD.remove();
     res.redirect('/');
   } catch (error) {
-    res.render('zombies/delete', {Zombie: Zombie});
+    res.render('zombies/delete', {Zombie: ZombieD});
   }
 });
 
 /*AQUI ES LA PARTE PARA ELIMINAR CEREBROS*/
 router.get('/cerebros/delete/:id', async function(req, res) {
-  var Cerebro = await Cerebro.findById(req.params.id);
-  res.render('cerebros/delete', {Cerebro: Cerebro});
+  var CerebroD = await Cerebro.findById(req.params.id);
+  res.render('cerebros/delete', {Cerebro: CerebroD});
 });
 
 router.delete('/cerebros/delete/:id', async function(req, res) {
-  var Cerebro = await Cerebro.findById(req.params.id);
+  var CerebroD = await Cerebro.findById(req.params.id);
 
   try {
-    Cerebro.remove();
+    CerebroD.remove();
     res.redirect('/cerebros');
   } catch (error) {
-    res.render('cerebros/delete', {Zombie: Zombie});
+    res.render('cerebros/delete', {Zombie: ZombieD});
   }
 });
 
