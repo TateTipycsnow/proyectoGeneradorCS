@@ -1,9 +1,20 @@
 var mongoose = require('mongoose');
 
 var modelSchema = mongoose.Schema({
-    Name: String,
-    Mail: String, 
-    Type: String
+    Name: {
+        type: String,
+        required: [true, "El nombre es obligatorio"],
+        minlength: [6, "El nombre es muy corto"],
+        maxlength: [20, "El nombre es muy largo"]
+    },
+    Mail: {
+        type: String,
+        required: [true, "El e-mail es obligatorio"]
+    }, 
+    Type: {
+        type: String,
+        enum: ["Alumno","Maestro"]
+    }
 });
 
 var Zombie = mongoose.model("Zombie", modelSchema);

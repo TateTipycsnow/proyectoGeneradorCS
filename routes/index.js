@@ -8,8 +8,11 @@ var Cerebro = require("../models/cerebro");
 router.get('/', function(req, res, next) {
   Zombie.find().exec(function(error, zombies){
     if(!error){
-    console.log(zombies);
-    res.render('index', { title: 'Jared', curso: 'Programacion C/S', viewZombies: zombies});
+      console.log(zombies);
+      res.render('index', { title: 'Jared', curso: 'Programacion C/S', viewZombies: zombies});
+    }
+    else{
+      console.log(error.message);
     }
   });
 });
@@ -17,8 +20,11 @@ router.get('/', function(req, res, next) {
 router.get('/cerebros', function(req, res) {
   Cerebro.find().exec(function(error, cerebros){
     if(!error){
-    console.log(cerebros);
-    res.render('cerebros/index', { title: 'Cerebros', data: 'Bienvenido a la tienda de cerebros', viewCerebros: cerebros});
+      console.log(cerebros);
+      res.render('cerebros/index', { title: 'Cerebros', data: 'Bienvenido a la tienda de cerebros', viewCerebros: cerebros});
+    }
+    else{
+      console.log(error.message);
     }
   });
 });

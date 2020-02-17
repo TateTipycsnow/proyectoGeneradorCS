@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var mongoose = require('mongoose');
 var path = require('path');
+var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
@@ -21,8 +22,10 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css/'));
+app.use('/css', express.static(__dirname + '/node_modules/@fortawesome/fontawesome-free/'));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
