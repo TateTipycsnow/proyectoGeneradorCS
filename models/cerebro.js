@@ -7,7 +7,7 @@ var modelSchema = mongoose.Schema({
     },
     Flavor: {
         type: String,
-        enum: ["Fresa", "Vainilla", "Platano", "Higo", "Sandia"]
+        enum: ["Dubalin", "Minecraft", "Electrico", "Humano", "Repollo"]
     },
     Price: {
         type: String,
