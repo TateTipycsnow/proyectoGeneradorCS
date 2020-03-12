@@ -8,9 +8,9 @@ router.post('/zombies/new', async function(req, res) {
     var data = req.body;
 
     var nuevoZombie = new Zombie({
-        Name: data.name,
-        Mail: data.email,
-        Type: data.type
+        Name: data.Name,
+        Mail: data.Mail,
+        Type: data.Type
     });
 
     nuevoZombie.save(function(error) {
