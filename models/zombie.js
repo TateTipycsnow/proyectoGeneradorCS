@@ -13,7 +13,7 @@ var modelSchema = mongoose.Schema({
     },
     Type: {
         type: String,
-        enum: ["Alumno", "Maestro"]
+        enum: ["Alumno", "Maestro", "Creator", "Drawer", "Fighter"]
     }
 });
 
