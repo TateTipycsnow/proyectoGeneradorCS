@@ -4,7 +4,7 @@ var modelSchema = mongoose.Schema({
     Name: {
         type: String,
         required: [true, "El nombre es obligatorio"],
-        minlength: [5, "El nombre es muy corto"],
+        minlength: [3, "El nombre es muy corto"],
         maxlength: [20, "El nombre es muy largo"]
     },
     Mail: {

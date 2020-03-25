@@ -40,15 +40,23 @@ router.post('/zombies/new', async function(req, res) {
     });
 });
 
-router.delete('/zombies/delete/:id', async function(req, res) {
-    var ZombieD = await Zombie.findById(req.params.id);
+router.delete('/zombies/delete/:id', async function(req) {
+    var id = req.params.id;
+    await Zombie.findByIdAndRemove(id);
+});
 
-    try {
-        ZombieD.remove();
-        res.redirect('/');
-    } catch (error) {
-        res.status(200).json({ Zombie: ZombieD });
-    }
+router.put('/zombies/edit/:id', async function(req) {
+    var id = req.params.id;
+    var data = req.body;
+
+    var ZombieU = {
+        Name: data.Name,
+        Mail: data.Mail,
+        Type: data.Type
+    };
+
+    await Zombie.findByIdAndUpdate(id, { $set: ZombieU });
+    // await Zombie.findByIdAndUpdate(id, {$set: Zombie}, {new: true});
 });
 
 router.get('/cerebros', async(req, res) => {
