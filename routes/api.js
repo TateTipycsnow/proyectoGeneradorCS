@@ -40,9 +40,10 @@ router.post('/zombies/new', async function(req, res) {
     });
 });
 
-router.delete('/zombies/delete/:id', async function(req) {
+router.delete('/zombies/delete/:id', async function(req, res) {
     var id = req.params.id;
     await Zombie.findByIdAndRemove(id);
+    res.json({ mensaje: 'Eliminado' });
 });
 
 router.put('/zombies/edit/:id', async function(req) {
