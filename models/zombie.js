@@ -14,6 +14,10 @@ var modelSchema = mongoose.Schema({
     Type: {
         type: String,
         enum: ["Alumno", "Maestro", "Creator", "Drawer", "Fighter"]
+    },
+    UserId: {
+        type: String,
+        required: [true, "El usuario es necesario"]
     }
 });
 

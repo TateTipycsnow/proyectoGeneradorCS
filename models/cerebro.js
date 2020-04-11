@@ -10,12 +10,20 @@ var modelSchema = mongoose.Schema({
         enum: ["Dubalin", "Minecraft", "Electrico", "Humano", "Repollo"]
     },
     Price: {
-        type: String,
+        type: Number,
         required: [true, "El precio es obligatorio"]
     },
     Picture: {
         type: String,
         required: [true, "El nombre de la fotografia es obligatorio"]
+    },
+    UserId: {
+        type: String,
+        required: [true, "El id del usuario es necesario"]
+    },
+    User: {
+        type: String,
+        required: [true, "El usuario es necesario"]
     }
 });
 
